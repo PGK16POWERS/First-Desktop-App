@@ -46,6 +46,34 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.5.2</version>
+                <executions>
+                    <execution>
+                        <id>create-dmg</id>
+                        <goals>
+                            <goal>create-img</goal>
+                            <goal>create-installer</goal>
+                        </goals>
+                        <configuration>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <mainJar>${project.build.finalName}.jar</mainJar>
+                            <mainClass>com.example.Main</mainClass>
+                            <appName>First Touch</appName>
+                            <type>dmg</type>
+                            <icon>${project.basedir}/src/main/resources/app-icon.icns</icon>
+                            <javaOptions>
+                                <javaOption>--module-path</javaOption>
+                                <javaOption>${java.home}/lib</javaOption>
+                                <javaOption>--add-modules</javaOption>
+                                <javaOption>javafx.controls,javafx.fxml</javaOption>
+                            </javaOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
